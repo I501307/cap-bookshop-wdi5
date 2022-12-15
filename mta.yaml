@@ -8,8 +8,8 @@ build-parameters:
   before-all:
     - builder: custom
       commands:
-      - npm install --production
-      - npx -p @sap/cds-dk cds build --production
+        - npm install --production
+        - npx -p @sap/cds-dk cds build --production
 modules:
   - name: samples-srv
     type: nodejs
@@ -33,6 +33,22 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: samples-db
+
+  - name: samples
+    type: approuter.nodejs
+    path: app/ # from cds.env.folders. Consider also cds.env.build.target -> gen/app
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: samples-auth
 
 resources:
   - name: samples-db
