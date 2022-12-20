@@ -8,7 +8,7 @@
         "passport": ">=0.4.1"
     },
     "scripts": {
-        "start": "cds run --in-memory?",
+        "start": "NODE_ENV=development cds run --with-mocks --in-memory",
         "watch": "cds watch"
     },
     "cds": {
