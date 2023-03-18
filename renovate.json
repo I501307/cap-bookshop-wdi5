@@ -1,0 +1,45 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "packageNames": ["nodejs-buildpack"],
+      "excludePackageNames": ["node"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "depTypeList": ["dependencies", "devDependencies"],
+      "groupName": "nodejs-buildpack",
+      "schedule": ["every weekend"],
+      "baseBranches": ["master"],
+      "enabled": true,
+      "automerge": true,
+      "commitMessageTopic": "{{groupName}}",
+      "semanticCommits": "enabled",
+      "updateWithPr": true,
+      "prTitle": "Update {{depName}} to {{newVersion}}",
+      "prBody": "Updates {{depName}} to version {{newVersion}}\n\nRelease notes:\n{{#each releaseNotes}}- {{this}}\n{{/each}}"
+    },
+    {
+      "packageNames": ["node"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "depTypeList": ["dependencies"],
+      "groupName": "nodejs-buildpack",
+      "schedule": ["every weekend"],
+      "baseBranches": ["master"],
+      "enabled": true,
+      "automerge": true,
+      "commitMessageTopic": "{{groupName}}",
+      "semanticCommits": "enabled",
+      "updateWithPr": true,
+      "prTitle": "Update {{depName}} to {{newVersion}}",
+      "prBody": "Updates {{depName}} to version {{newVersion}}\n\nRelease notes:\n{{#each releaseNotes}}- {{this}}\n{{/each}}",
+      "filter": {
+        "type": "stack",
+        "stacks": ["cflinuxfs3"]
+      },
+      "versioning": "auto",
+      "rangeStrategy": "replace",
+      "lookupName": "node",
+      "lookupVersion": "{{depVersion}}"
+    }
+  ]
+}
