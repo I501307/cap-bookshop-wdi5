@@ -20,7 +20,7 @@
         "@sap/xssec": "^3",
         "express": "^4.17.1",
         "passport": ">=0.4.1",
-        "sqlite3": "^5"
+        "sqlite3": "^5",
         "nodejs-buildpack":"1.8.5"
     },
     "devDependencies": {
