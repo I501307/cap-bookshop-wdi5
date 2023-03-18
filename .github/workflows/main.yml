@@ -1,0 +1,2 @@
+- name: action-renovate-checkbox
+  uses: Jolg42/action-renovate-checkbox@1.0.0
